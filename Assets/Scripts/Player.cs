@@ -10,7 +10,7 @@ public class Player : MonoBehaviour {
     //100 för att spelarens första drag ska bara vara lagligt genom if-satsen i Check-Adjacents första villkor
     public int PlayerTileI = 100;
     public int PlayerTileJ = 100;
-    public int Facing;
+    public int Facing = 3;
 
     public float moveSpeed = 2;
 
@@ -80,7 +80,7 @@ public class Player : MonoBehaviour {
                         Facing = 3;
                     }
                 }
-                else
+                else if(!Starting)
                 {
                     if(PlayerTileI > TargetTile.ValueI)
                     {
