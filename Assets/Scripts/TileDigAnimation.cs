@@ -76,8 +76,14 @@ public class TileDigAnimation : MonoBehaviour {
 			maskImage.fillMethod = Image.FillMethod.Horizontal;
 			maskImage.fillOrigin = (int)Image.OriginHorizontal.Right;
 			break;
-		
+		// StartDown
+		case 0:
+			maskImage.fillMethod = Image.FillMethod.Vertical;
+			maskImage.fillOrigin = (int)Image.OriginVertical.Top;
+			break;
 		}
+
+
 	}
 
 
