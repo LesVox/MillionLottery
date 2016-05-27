@@ -45,6 +45,11 @@ public class MoveItem : MonoBehaviour
             yield return null;
         }
 
+        if (isKey)
+        {
+            Chest.instance.UnlockLock();
+        }
+
         Destroy(gameObject);
     }
 }
