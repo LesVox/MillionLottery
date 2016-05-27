@@ -73,8 +73,8 @@ public class Block : MonoBehaviour {
             DiscoveredItem = true;
             if (ContainsItem != Item.None)
             {
-                var item = (GameObject)Instantiate(ItemsToSpawn[(int) ContainsItem - 1], transform.position + new Vector3((float)Board.Size / 2, (float)Board.Size / 2, 0), transform.rotation);
-                item.transform.SetParent(transform);
+                var item = (GameObject)Instantiate(ItemsToSpawn[(int) ContainsItem - 1], GetComponent<RectTransform>().position + new Vector3((float)Board.Size / 2, (float)Board.Size / 2, 0), transform.rotation);
+                item.transform.SetParent(Front.instance.transform);
             }
         }
     }

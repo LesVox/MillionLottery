@@ -16,8 +16,9 @@ public class TileDigAnimation : MonoBehaviour {
 		maskImage = GetComponent<Image> ();
 		rect = GetComponent<RectTransform> ();
 		parentRect = transform.parent.GetComponent<RectTransform> ();
-		rect.position = parentRect.position;
+		rect.anchoredPosition3D = new Vector2(0,0);
 		rect.sizeDelta = parentRect.sizeDelta;
+//		rect.anchoredPosition = parentRect.anchoredPosition;
 		GameObject bgnd = (GameObject)Instantiate (dugBGND, Vector3.zero, Quaternion.identity);
 		Vector3 startpos = bgnd.transform.position;
 		bgnd.transform.SetParent (gameObject.transform, false);
@@ -53,7 +54,7 @@ public class TileDigAnimation : MonoBehaviour {
 	public void DigBlock(){
 		if (Player.instance != null) {
 			SetDirection (Player.instance.Facing);
-			ShowTile ();
+			StartCoroutine(ShowTile ());
 		} else {
 			Debug.Log ("No player found.");
 		}
@@ -76,22 +77,22 @@ public class TileDigAnimation : MonoBehaviour {
 	void SetDirection(int direction){
 		switch (direction) {
 		// North
-		case 1:
+		case 3:
 			maskImage.fillMethod = Image.FillMethod.Vertical;
 			maskImage.fillOrigin = (int)Image.OriginVertical.Bottom;
 			break;
 		// East
-		case 2:
+		case 4:
 			maskImage.fillMethod = Image.FillMethod.Horizontal;
 			maskImage.fillOrigin = (int)Image.OriginHorizontal.Left;
 			break;
 		// South
-		case 3:
+		case 1:
 			maskImage.fillMethod = Image.FillMethod.Vertical;
 			maskImage.fillOrigin = (int)Image.OriginVertical.Top;
 			break;
 		// West
-		case 4:
+		case 2:
 			maskImage.fillMethod = Image.FillMethod.Horizontal;
 			maskImage.fillOrigin = (int)Image.OriginHorizontal.Right;
 			break;
