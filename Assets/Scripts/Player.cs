@@ -6,15 +6,15 @@ public class Player : MonoBehaviour {
     public static Player instance;
 
     public int Steps = 6;
+    public int PlayerTileI;
+    public int PlayerTileJ;
+    public int Facing;
 
     public float moveSpeed = 2;
 
     public bool IsMoving = false;
-
-    public int PlayerTileI;
-    public int PlayerTileJ;
-
-    public bool Starting = true;
+    public bool Starting = true; 
+        
 
     // Use this for initialization
     void Awake ()
@@ -43,12 +43,10 @@ public class Player : MonoBehaviour {
             currentTime += rate * Time.deltaTime;
 
             transform.position = Vector3.Lerp(startPos, TargetPosition, currentTime);
-            Debug.Log(currentTime);
             yield return null;
         }
         
         IsMoving = false;
-        
     }
 
     public void Move(Vector3 TargetPosition, Block TargetTile)
@@ -64,10 +62,40 @@ public class Player : MonoBehaviour {
                 }
                 StopAllCoroutines();
                 StartCoroutine(MovePlayer(TargetPosition));
+                
+
+                if(PlayerTileI - TargetTile.ValueI == 0 && PlayerTileJ - TargetTile.ValueJ != 0)
+                {
+                    if(PlayerTileJ > TargetTile.ValueJ)
+                    {
+                        //Going up
+                        Facing = 1;
+                    }
+                    else
+                    {
+                        //Going down
+                        Facing = 3;
+                    }
+                }
+                else
+                {
+                    if(PlayerTileI > TargetTile.ValueI)
+                    {
+                        //Going right
+                        Facing = 2;
+                    }
+                    else
+                    {
+                        //Going left
+                        Facing = 4;
+                    }
+                }
+
                 PlayerTileI = TargetTile.ValueI;
                 PlayerTileJ = TargetTile.ValueJ;
+
+
             }
-            //transform.position = TargetPosition;
         }
     }
 }
