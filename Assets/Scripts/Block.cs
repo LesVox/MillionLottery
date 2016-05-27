@@ -32,22 +32,22 @@ public class Block : MonoBehaviour {
 
     public void MovePlayer()
     {
-        CheckAdjacent();
-
         if (IsAdjacent)
         {
             Player.instance.Move(transform.position, this);
             Discovered = true;
+
+            if (Player.instance.Starting)
+                Player.instance.Starting = false;
         }
             
     }
 
     public void CheckAdjacent()
     {
-        if (Player.instance.Starting || Mathf.Abs(Player.instance.PlayerTileI - ValueI) == 1 && Mathf.Abs(Player.instance.PlayerTileJ - ValueJ) == 0 || Mathf.Abs(Player.instance.PlayerTileJ - ValueJ) == 1 && Mathf.Abs(Player.instance.PlayerTileI - ValueI) == 0)
+        if (Player.instance.Starting && ValueJ == 4 || Mathf.Abs(Player.instance.PlayerTileI - ValueI) == 1 && Mathf.Abs(Player.instance.PlayerTileJ - ValueJ) == 0 || Mathf.Abs(Player.instance.PlayerTileJ - ValueJ) == 1 && Mathf.Abs(Player.instance.PlayerTileI - ValueI) == 0)
         {
             IsAdjacent = true;
-            Player.instance.Starting = false;
         }
         else
         {
@@ -73,8 +73,8 @@ public class Block : MonoBehaviour {
             DiscoveredItem = true;
             if (ContainsItem != Item.None)
             {
-                var item = (GameObject)Instantiate(ItemsToSpawn[(int) ContainsItem - 1], transform.position + new Vector3((float)Board.Size / 2, (float)Board.Size / 2, 0), transform.rotation);
-                item.transform.SetParent(transform);
+                var item = (GameObject)Instantiate(ItemsToSpawn[(int) ContainsItem - 1], GetComponent<RectTransform>().position + new Vector3((float)Board.Size / 2, (float)Board.Size / 2, 0), transform.rotation);
+                item.transform.SetParent(Front.instance.transform);
             }
         }
     }

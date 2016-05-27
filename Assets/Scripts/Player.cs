@@ -6,8 +6,10 @@ public class Player : MonoBehaviour {
     public static Player instance;
 
     public int Steps = 6;
-    public int PlayerTileI;
-    public int PlayerTileJ;
+
+    //100 för att spelarens första drag ska bara vara lagligt genom if-satsen i Check-Adjacents första villkor
+    public int PlayerTileI = 100;
+    public int PlayerTileJ = 100;
     public int Facing;
 
     public float moveSpeed = 2;
