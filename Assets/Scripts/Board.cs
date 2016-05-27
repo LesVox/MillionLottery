@@ -25,6 +25,8 @@ public class Board : MonoBehaviour {
             {
                 var InstantiatedBlock = Instantiate(BlockPrefab);
                 InstantiatedBlock.transform.position = new Vector3((i * Size) - ((BoardWidth * Size)/2) + Screen.width / 2, (j * Size) - ((BoardHeight * Size) / 2) + Screen.height / 2, 0);
+                InstantiatedBlock.GetComponent<Block>().ValueI = i;
+                InstantiatedBlock.GetComponent<Block>().ValueJ = j;
                 Blocks[i].Add(InstantiatedBlock.GetComponent<Block>());
                 InstantiatedBlock.transform.SetParent(transform);
                 InstantiatedBlock.GetComponent<Image>().sprite = Sprites[spriteIndex];
