@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class Board : MonoBehaviour {
 
@@ -9,11 +10,15 @@ public class Board : MonoBehaviour {
     GameObject BlockPrefab;
     public int BoardWidth;
     public int BoardHeight;
+    public List<Sprite> Sprites;
+    public List<Block.Item> Items;
     
-    public int Size = 32;
+    public static int Size = 64;
 
     public void Generate(int Width, int Height)
     {
+        int OneDimIndex = 0;
+
         for (int i = 0 ; i < Width ; i++)
         {
             Blocks.Add(new List<Block>());
@@ -24,14 +29,18 @@ public class Board : MonoBehaviour {
                 InstantiatedBlock.GetComponent<Block>().ValueI = i;
                 InstantiatedBlock.GetComponent<Block>().ValueJ = j;
                 Blocks[i].Add(InstantiatedBlock.GetComponent<Block>());
-                InstantiatedBlock.transform.parent = transform;
+                InstantiatedBlock.transform.SetParent(transform);
+                InstantiatedBlock.GetComponent<Image>().sprite = Sprites[OneDimIndex];
+                InstantiatedBlock.GetComponent<Block>().ContainsItem = Items[OneDimIndex];
+                OneDimIndex++;
             }
         }
     }
 
 	// Use this for initialization
 	void Start ()
-    {
+	{
+	    GenerateRandomItems();
         Generate(BoardWidth, BoardHeight);
 	}
 	
@@ -39,4 +48,13 @@ public class Board : MonoBehaviour {
 	void Update () {
 	
 	}
+
+
+    void GenerateRandomItems()
+    {
+        for (int i = 0; i < 20; ++i)
+        {
+            Items.Add((Block.Item)Random.Range(0,3));
+        }
+    }
 }

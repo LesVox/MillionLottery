@@ -20,9 +20,9 @@ public class Player : MonoBehaviour {
     void Awake ()
     {
 	    if (instance == null)
-            {
-                instance = this;
-            }
+        {
+            instance = this;
+        }
 	}
 	
 	// Update is called once per frame
@@ -43,6 +43,7 @@ public class Player : MonoBehaviour {
             currentTime += rate * Time.deltaTime;
 
             transform.position = Vector3.Lerp(startPos, TargetPosition, currentTime);
+
             yield return null;
         }
         
