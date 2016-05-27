@@ -7,9 +7,11 @@ public class TileDigAnimation : MonoBehaviour {
 	private Image maskImage;
 	private RectTransform rect;
 	private RectTransform parentRect;
+	private RectTransform bgndRect;
 	public GameObject dugBGND;
 	[SerializeField]
 	private float showSpeed = 2f;
+	private GameObject bgnd;
 
 	// Use this for initialization
 	void Awake () {
@@ -18,16 +20,20 @@ public class TileDigAnimation : MonoBehaviour {
 		parentRect = transform.parent.GetComponent<RectTransform> ();
 		rect.anchoredPosition3D = new Vector2(0,0);
 		rect.sizeDelta = parentRect.sizeDelta;
-//		rect.anchoredPosition = parentRect.anchoredPosition;
-		GameObject bgnd = (GameObject)Instantiate (dugBGND, Vector3.zero, Quaternion.identity);
+
+		bgnd = (GameObject)Instantiate (dugBGND, Vector3.zero, Quaternion.identity);
+		Invoke("ChangeParent", 0.01f);
+	}
+
+	void ChangeParent(){
 		Vector3 startpos = bgnd.transform.position;
 		bgnd.transform.SetParent (gameObject.transform, false);
 		bgnd.transform.position = startpos;
 	}
-	
+		
 	// Update is called once per frame
 	void Update () {
-//		/*
+		/*
 		if (Input.GetKeyDown (KeyCode.UpArrow)) {
 			SetDirection (1);
 			StopAllCoroutines ();
@@ -48,7 +54,7 @@ public class TileDigAnimation : MonoBehaviour {
 			StopAllCoroutines ();
 			StartCoroutine (ShowTile ());
 		}
-//		*/
+		*/
 	}
 
 	public void DigBlock(){
