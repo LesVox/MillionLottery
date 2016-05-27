@@ -80,7 +80,7 @@ public class Player : MonoBehaviour {
                         Facing = 3;
                     }
                 }
-                else
+                else if(!Starting)
                 {
                     if(PlayerTileI > TargetTile.ValueI)
                     {
