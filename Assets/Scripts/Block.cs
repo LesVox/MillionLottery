@@ -24,30 +24,37 @@ public class Block : MonoBehaviour {
 
     public Image Arrow;
     private RectTransform ArrowTransform;
+	private TileDigAnimation tileDig;
 
     void Start()
     {
         ArrowTransform = Arrow.GetComponent<RectTransform>();
+		tileDig = GetComponentInChildren<TileDigAnimation> ();
     }
 
     public void MovePlayer()
     {
-        CheckAdjacent();
-
         if (IsAdjacent)
         {
-            Player.instance.Move(transform.position, this);
-            Discovered = true;
+			if (!Discovered && tileDig != null && Player.instance.Steps > 0) {
+				tileDig.DigBlock ();
+			}
+
+			Player.instance.Move(transform.position, this);
+            
+			Discovered = true;
+
+            if (Player.instance.Starting)
+                Player.instance.Starting = false;
         }
             
     }
 
     public void CheckAdjacent()
     {
-        if (Player.instance.Starting || Mathf.Abs(Player.instance.PlayerTileI - ValueI) == 1 && Mathf.Abs(Player.instance.PlayerTileJ - ValueJ) == 0 || Mathf.Abs(Player.instance.PlayerTileJ - ValueJ) == 1 && Mathf.Abs(Player.instance.PlayerTileI - ValueI) == 0)
+        if (Player.instance.Starting && ValueJ == 4 || Mathf.Abs(Player.instance.PlayerTileI - ValueI) == 1 && Mathf.Abs(Player.instance.PlayerTileJ - ValueJ) == 0 || Mathf.Abs(Player.instance.PlayerTileJ - ValueJ) == 1 && Mathf.Abs(Player.instance.PlayerTileI - ValueI) == 0)
         {
             IsAdjacent = true;
-            Player.instance.Starting = false;
         }
         else
         {

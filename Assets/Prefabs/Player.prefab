@@ -11,6 +11,8 @@ GameObject:
   - 222: {fileID: 22287090}
   - 114: {fileID: 11468022}
   - 114: {fileID: 11450962}
+  - 95: {fileID: 9568842}
+  - 114: {fileID: 11448676}
   m_Layer: 5
   m_Name: Player
   m_TagString: Untagged
@@ -18,6 +20,34 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!95 &9568842
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 187462}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: fd9efb67febbba14f833d18c8627e930, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &11448676
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 187462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb7e65649723c4a46959bf90243faa6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11450962
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -29,8 +59,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04c4275b3207aa64f8af4da677279d90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Steps: 6
+  PlayerTileI: 100
+  PlayerTileJ: 100
+  Facing: 0
   moveSpeed: 0.5
   IsMoving: 0
+  Starting: 1
 --- !u!114 &11468022
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -44,7 +79,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 1, b: 0.006896496, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -76,11 +111,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_AnchorMin: {x: 1, y: 1}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 64, y: 64}
-  m_Pivot: {x: 1, y: 1}
+  m_Pivot: {x: 0, y: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
