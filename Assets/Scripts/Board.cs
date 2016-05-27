@@ -13,7 +13,7 @@ public class Board : MonoBehaviour {
     public List<Sprite> Sprites;
     public List<Block.Item> Items;
     
-    public static int Size = 64;
+    public static int Size = 256;
 
     public void Generate(int Width, int Height)
     {
@@ -25,11 +25,11 @@ public class Board : MonoBehaviour {
             for (int j = 0; j < Height; j++)
             {
                 var InstantiatedBlock = Instantiate(BlockPrefab);
-                InstantiatedBlock.transform.position = new Vector3((i * Size) - ((BoardWidth * Size)/2) + Screen.width / 2, (j * Size) - ((BoardHeight * Size) / 2) + Screen.height / 2, 0);
+                InstantiatedBlock.transform.position = new Vector3((i * Size) - ((BoardWidth * Size)/2) + Screen.width / 7, (j * Size) - ((BoardHeight * Size) / 2) + Screen.height / 500, 0);
                 InstantiatedBlock.GetComponent<Block>().ValueI = i;
                 InstantiatedBlock.GetComponent<Block>().ValueJ = j;
                 Blocks[i].Add(InstantiatedBlock.GetComponent<Block>());
-                InstantiatedBlock.transform.SetParent(transform);
+                InstantiatedBlock.transform.SetParent(transform, false);
                 InstantiatedBlock.GetComponent<Image>().sprite = Sprites[OneDimIndex];
                 InstantiatedBlock.GetComponent<Block>().ContainsItem = Items[OneDimIndex];
                 OneDimIndex++;
