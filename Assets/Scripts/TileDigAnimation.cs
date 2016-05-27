@@ -30,32 +30,6 @@ public class TileDigAnimation : MonoBehaviour {
 		bgnd.transform.SetParent (gameObject.transform, false);
 		bgnd.transform.position = startpos;
 	}
-		
-	// Update is called once per frame
-	void Update () {
-		/*
-		if (Input.GetKeyDown (KeyCode.UpArrow)) {
-			SetDirection (1);
-			StopAllCoroutines ();
-			StartCoroutine (ShowTile ());
-		}
-		if (Input.GetKeyDown (KeyCode.DownArrow)) {
-			SetDirection (3);
-			StopAllCoroutines ();
-			StartCoroutine (ShowTile ());
-		}
-		if (Input.GetKeyDown (KeyCode.LeftArrow)) {
-			SetDirection (4);
-			StopAllCoroutines ();
-			StartCoroutine (ShowTile ());
-		}
-		if (Input.GetKeyDown (KeyCode.RightArrow)) {
-			SetDirection (2);
-			StopAllCoroutines ();
-			StartCoroutine (ShowTile ());
-		}
-		*/
-	}
 
 	public void DigBlock(){
 		if (Player.instance != null) {

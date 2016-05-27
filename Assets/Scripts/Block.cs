@@ -24,18 +24,25 @@ public class Block : MonoBehaviour {
 
     public Image Arrow;
     private RectTransform ArrowTransform;
+	private TileDigAnimation tileDig;
 
     void Start()
     {
         ArrowTransform = Arrow.GetComponent<RectTransform>();
+		tileDig = GetComponentInChildren<TileDigAnimation> ();
     }
 
     public void MovePlayer()
     {
         if (IsAdjacent)
         {
-            Player.instance.Move(transform.position, this);
-            Discovered = true;
+			if (!Discovered && tileDig != null && Player.instance.Steps > 0) {
+				tileDig.DigBlock ();
+			}
+
+			Player.instance.Move(transform.position, this);
+            
+			Discovered = true;
 
             if (Player.instance.Starting)
                 Player.instance.Starting = false;
