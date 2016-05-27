@@ -11,8 +11,13 @@ public class Player : MonoBehaviour {
 
     public bool IsMoving = false;
 
-	// Use this for initialization
-	void Awake ()
+    public int PlayerTileI;
+    public int PlayerTileJ;
+
+    public bool Starting = true;
+
+    // Use this for initialization
+    void Awake ()
     {
 	    if (instance == null)
             {
@@ -50,14 +55,17 @@ public class Player : MonoBehaviour {
     {
         if (!IsMoving)
         {
-            if (!TargetTile.Discovered)
+            if (Steps > 0)
             {
-                Steps--;
-            }
-            if(Steps > 0)
-            {
+                if (!TargetTile.Discovered)
+                {
+                    Steps--;
+                    Steps = Mathf.Max(Steps, 0);
+                }
                 StopAllCoroutines();
                 StartCoroutine(MovePlayer(TargetPosition));
+                PlayerTileI = TargetTile.ValueI;
+                PlayerTileJ = TargetTile.ValueJ;
             }
             //transform.position = TargetPosition;
         }
