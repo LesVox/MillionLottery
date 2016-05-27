@@ -1,26 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GameState : MonoBehaviour {
+public class GameState {
 
-	public enum States {Startstate, Playstate, Endstate};
+	public enum States {Startstate, Playstate, Endstate, Paused};
+
 	public static States currentState = States.Startstate;
 
-	public static GameState instance;
-
-
-	// Use this for initialization
-	void Awake () {
-		if (instance == null)
-			instance = this;
-		else
-			Destroy (gameObject);
-
-
+	public static void ChangeState(States toState){
+		if (currentState == toState)
+			return;
+		
+		currentState = toState;
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+
 }
