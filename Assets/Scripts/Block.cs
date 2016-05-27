@@ -10,8 +10,7 @@ public class Block : MonoBehaviour {
 
     public void MovePlayer()
     {
-        Player.instance.Move(transform.position);
-        Debug.Log("Move bitch");
+        Player.instance.Move(transform.position, this);
     }
 
 }

@@ -5,6 +5,8 @@ public class Player : MonoBehaviour {
 
     public static Player instance;
 
+    public int Steps = 6;
+
     public float moveSpeed = 2;
 
     public bool IsMoving = false;
@@ -44,12 +46,19 @@ public class Player : MonoBehaviour {
         
     }
 
-    public void Move(Vector3 TargetPosition)
+    public void Move(Vector3 TargetPosition, Block TargetTile)
     {
         if (!IsMoving)
         {
-            StopAllCoroutines();
-            StartCoroutine(MovePlayer(TargetPosition));
+            if (!TargetTile.Discovered)
+            {
+                Steps--;
+            }
+            if(Steps > 0)
+            {
+                StopAllCoroutines();
+                StartCoroutine(MovePlayer(TargetPosition));
+            }
             //transform.position = TargetPosition;
         }
     }
