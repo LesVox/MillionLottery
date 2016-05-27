@@ -13,7 +13,7 @@ public class Board : MonoBehaviour {
     public List<Sprite> Sprites;
     public List<Block.Item> Items;
     
-    public static int Size = 256;
+    public static int Size = 250;
 
     public void Generate(int Width, int Height)
     {
