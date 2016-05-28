@@ -98,7 +98,7 @@ public class Board : MonoBehaviour {
 
         for (int i = 0; i < gemsPos.Count; ++i)
         {
-            Items[gemsPos[i]] = Block.Item.Gem;
+            Items[gemsPos[i]] = (Block.Item)Random.Range(2,5);
         }
     }
 
