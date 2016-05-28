@@ -14,7 +14,12 @@ public class Chest : MonoBehaviour {
     public float TimerMax = 0;
     public bool DoneWaiting = false;
 
+	public GameObject chestBehindParticles;
+
     Vector3 Destination = new Vector3();
+	private bool movedToMiddle;
+	private bool startedMoving;
+	private Animator anim;
 
     void Awake()
     {
@@ -22,6 +27,8 @@ public class Chest : MonoBehaviour {
         {
             instance = this;
         }
+
+		anim = GetComponent<Animator> ();
     }
 
     void Update()
@@ -45,9 +52,11 @@ public class Chest : MonoBehaviour {
 
         if (DoneWaiting)
         {
-            if (Delay(0.01f))
+			if (Delay(0.01f) && !startedMoving)
             {
-                transform.position = Vector3.Lerp(transform.position, Destination, .05f);
+//                transform.position = Vector3.Lerp(transform.position, Destination, .05f);
+				StartCoroutine(MoveChest());	
+				startedMoving = true;
                 //transform.localScale *= 1.005f;
             }
                 
@@ -55,6 +64,43 @@ public class Chest : MonoBehaviour {
         }
         //if(!Delay(1))
     }
+
+	IEnumerator MoveChest(){
+		float rate = 1f / 0.5f;
+		float currentTime = 0f;
+
+		Vector3 startPos = transform.position;
+		float targetScaleRate = 1.005f;
+		Vector3 targetScale = transform.localScale * targetScaleRate;
+		Vector3 startScale = transform.localScale;
+
+
+		while (currentTime < 1f) {
+			currentTime += rate * Time.deltaTime;
+			transform.position = Vector3.Lerp(startPos, Destination, currentTime);
+			transform.localScale = Vector3.Lerp (startScale, targetScale, currentTime);
+			yield return null;
+		}
+
+		movedToMiddle = true;
+
+		if (chestBehindParticles != null)
+			chestBehindParticles.SetActive (true);
+		
+	}
+
+	public void ClickChest(){
+		if (LocksLeft <= 0 && movedToMiddle) {
+			OpenChest ();
+		}
+	}
+
+	void OpenChest(){
+		if (anim != null) {
+			anim.SetTrigger ("Open");
+		}
+			
+	}
 
     public void UnlockLock()
     {
