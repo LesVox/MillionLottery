@@ -25,6 +25,7 @@ public class MoveItem : MonoBehaviour
         if (!Player.instance.IsMoving && !StartedMoving && ItemFound)
         {
             StartedMoving = true;
+            transform.SetParent(Front.instance.transform, false);
             StartCoroutine(StartMove());
 		}
     }

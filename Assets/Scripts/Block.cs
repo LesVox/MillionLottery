@@ -14,6 +14,9 @@ public class Block : MonoBehaviour {
     public int ValueJ;
     public bool IsAdjacent = false;
     public List<GameObject> ItemsToSpawn;
+    public Transform ItemParent;
+
+    public Image BlockImage;
 
     public enum Item
     {
@@ -91,7 +94,7 @@ public class Block : MonoBehaviour {
         {
             DiscoveredItem = true;
             var item = (GameObject)Instantiate(ItemsToSpawn[(int)ContainsItem - 1]);
-			item.transform.SetParent(Front.instance.transform, false);
+            item.transform.SetParent(ItemParent, false);
             item.GetComponent<RectTransform>().position = GetComponent<RectTransform>().position + new Vector3( /*(float)Board.Size / 2*/ 40, /*(float)Board.Size / 2*/40, 0);
             item.GetComponent<MoveItem>().ItemFound = ItemFound;
         }
@@ -100,7 +103,25 @@ public class Block : MonoBehaviour {
     public void ShowItem()
     {
         InstantiateItem(false);
-        GetComponent<Image>().enabled = false;
+        StartCoroutine(FadeBlock());
+    }
+
+    IEnumerator FadeBlock()
+    {
+
+        var image = BlockImage.GetComponent<Image>();
+        var alpha = image.color.a;
+
+        while (alpha > 0.4f)
+        {
+
+            alpha -= 2f * Time.deltaTime;
+
+            image.color *= new Color(1, 1, 1, 0);
+            image.color +=  new Color(0,0,0,alpha);
+
+            yield return null;
+        }
     }
 
     void RotateArrow()
