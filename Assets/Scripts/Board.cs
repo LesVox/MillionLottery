@@ -31,7 +31,7 @@ public class Board : MonoBehaviour {
             for (int j = 0; j < Height; j++)
             {
                 var InstantiatedBlock = Instantiate(BlockPrefab);
-                InstantiatedBlock.transform.position = new Vector3((i * Size) - ((BoardWidth * Size)/2) + Screen.width / 7, (j * Size) - ((BoardHeight * Size) / 2) + Screen.height / 500, 0);
+                InstantiatedBlock.transform.position = new Vector3((i * Size) - ((BoardWidth * Size)/2) + 50/* + Screen.width / 7*/, (j * Size) - ((BoardHeight * Size) / 2) + Screen.height / 500, 0);
                 InstantiatedBlock.GetComponent<Block>().ValueI = i;
                 InstantiatedBlock.GetComponent<Block>().ValueJ = j;
                 Blocks[i].Add(InstantiatedBlock.GetComponent<Block>());
