@@ -5,6 +5,9 @@ public class Player : MonoBehaviour {
 
     public static Player instance;
 
+    public float Timer = 0;
+    public float TimerMax = 0;
+
     public int Steps = 6;
 
     //100 för att spelarens första drag ska bara vara lagligt genom if-satsen i Check-Adjacents första villkor
@@ -17,7 +20,7 @@ public class Player : MonoBehaviour {
     public bool IsDigging = false;
     public bool IsMoving = false;
     public bool Starting = true;
-    public bool FacingRight = true;
+    public bool FacingRight = false;
         
     
     void Awake ()
@@ -34,6 +37,18 @@ public class Player : MonoBehaviour {
 	    {
             Board.instance.ShowAllItems();
 	    }
+    }
+
+    public bool Delay(float WaitForSeconds)
+    {
+        TimerMax = WaitForSeconds;
+        Timer += Time.deltaTime;
+        if (Timer > TimerMax)
+        {
+            Timer = 0;
+            return true;
+        }
+        return false;
     }
 
     IEnumerator MovePlayer(Vector3 TargetPosition)
