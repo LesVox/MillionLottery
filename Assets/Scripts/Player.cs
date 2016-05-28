@@ -15,7 +15,8 @@ public class Player : MonoBehaviour {
     public float moveSpeed = 2;
 
     public bool IsMoving = false;
-    public bool Starting = true; 
+    public bool Starting = true;
+    public bool FacingRight = true;
         
     
     void Awake ()
