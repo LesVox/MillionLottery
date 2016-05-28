@@ -15,6 +15,7 @@ public class PlayerAnimator : MonoBehaviour {
         GetComponent<Animator>().SetBool("IsMoving", Player.instance.IsMoving);
         GetComponent<Animator>().SetInteger("Facing", Player.instance.Facing);
         GetComponent<Animator>().SetBool("FacingRight", Player.instance.FacingRight);
+        GetComponent<Animator>().SetBool("Starting", Player.instance.Starting);
 
         if (Player.instance.Facing == 4)
         {
