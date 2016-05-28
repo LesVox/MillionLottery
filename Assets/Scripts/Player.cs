@@ -15,7 +15,8 @@ public class Player : MonoBehaviour {
     public float moveSpeed = 2;
 
     public bool IsMoving = false;
-    public bool Starting = true; 
+    public bool Starting = true;
+    public bool FacingRight = true;
         
     
     void Awake ()
@@ -65,8 +66,7 @@ public class Player : MonoBehaviour {
                     Steps--;
                     Steps = Mathf.Max(Steps, 0);
                 }
-                StopAllCoroutines();
-                StartCoroutine(MovePlayer(TargetPosition));
+                
                 
 
                 if(PlayerTileI - TargetTile.ValueI == 0 && PlayerTileJ - TargetTile.ValueJ != 0)
@@ -95,6 +95,13 @@ public class Player : MonoBehaviour {
                         Facing = 4;
                     }
                 }
+                else
+                {
+                    Facing = 1;
+                }
+
+                StopAllCoroutines();
+                StartCoroutine(MovePlayer(TargetPosition));
 
                 PlayerTileI = TargetTile.ValueI;
                 PlayerTileJ = TargetTile.ValueJ;
