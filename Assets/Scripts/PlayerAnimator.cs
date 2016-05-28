@@ -12,5 +12,6 @@ public class PlayerAnimator : MonoBehaviour {
 	void Update ()
     {
         GetComponent<Animator>().SetBool("IsMoving", Player.instance.IsMoving);
+        GetComponent<Animator>().SetInteger("Facing", Player.instance.Facing);
     }
 }
