@@ -30,6 +30,7 @@ public class Block : MonoBehaviour {
 
     public Image Arrow;
     public GameObject Showel;
+    public Image Hilight;
     private RectTransform ArrowTransform;
 	private TileDigAnimation tileDig;
 	private GameObject itemObject;
@@ -117,7 +118,7 @@ public class Block : MonoBehaviour {
 
         if (IsFirstBlock)
         {
-            if (Delay(1.15f))
+            if (Delay(1.11f))
             {
                 IsFirstBlock = false;
                 MovePlayer();
@@ -126,7 +127,13 @@ public class Block : MonoBehaviour {
 
         if (PlayerOnthisBlock())
         {
+            Hilight.enabled = true;
+
             InstantiateItem(true);
+        }
+        else
+        {
+            Hilight.enabled = false;
         }
     }
 
@@ -146,6 +153,16 @@ public class Block : MonoBehaviour {
 			Invoke ("DelayedSet", 0.01f);
             item.GetComponent<MoveItem>().ItemFound = ItemFound;
 			item.transform.position = startPos;
+
+			if (SoundManager.instance != null) {
+				if (ContainsItem == Item.Key) {
+					SoundManager.instance.PlayKeyPickup ();
+				} else {
+					SoundManager.instance.PlayGemPickup ();
+				}
+			} else {
+				Debug.Log ("No soundmanager found");
+			}
 
             GameState.ItemIsMoving = true;
         }
