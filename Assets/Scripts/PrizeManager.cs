@@ -30,11 +30,11 @@ public class PrizeManager : MonoBehaviour {
 
 			Winnings = availablePrizes [winnumber];
 			prizeImages [winnumber].SetActive (true);
-
+			winScreen.SetActive (true);
 			// Old wintext
 //			if (winningText != null && winScreen != null) {
 //				winningText.text = Winnings.ToString () + " Kr";
-//				winScreen.SetActive (true);
+//				
 //			}
 
 
