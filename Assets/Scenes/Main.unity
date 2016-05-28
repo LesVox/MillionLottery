@@ -405,6 +405,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NumberOfShovels: 0
   NumberOfShovelsText: {fileID: 1251563178}
+  shovelImage: {fileID: 0}
+  shovels: []
 --- !u!224 &275739475 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 22455498, guid: be55fc2837c15394fa08bd45d8e6ea76,
@@ -649,6 +651,10 @@ Prefab:
     - target: {fileID: 22473810, guid: f848f72d1a6ee4543a6270c817c44556, type: 2}
       propertyPath: m_AnchoredPosition.y
       value: -21
+      objectReference: {fileID: 0}
+    - target: {fileID: 11407232, guid: f848f72d1a6ee4543a6270c817c44556, type: 2}
+      propertyPath: m_PreserveAspect
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f848f72d1a6ee4543a6270c817c44556, type: 2}
