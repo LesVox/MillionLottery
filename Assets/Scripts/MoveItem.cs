@@ -69,6 +69,7 @@ public class MoveItem : MonoBehaviour
             Gems.instance.AddGems(NumberOfGems);
         }
 
+        GameState.ItemIsMoving = false;
 
         Destroy(gameObject);
     }

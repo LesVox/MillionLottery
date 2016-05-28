@@ -104,11 +104,14 @@ public class Board : MonoBehaviour {
 
     public void ShowAllItems()
     {
-        for (int i = 0; i < Blocks.Count; ++i)
+        if (!GameState.ItemIsMoving)
         {
-            for (int j = 0; j < Blocks[i].Count; ++j)
+            for (int i = 0; i < Blocks.Count; ++i)
             {
-                Blocks[i][j].ShowItem();
+                for (int j = 0; j < Blocks[i].Count; ++j)
+                {
+                    Blocks[i][j].ShowItem();
+                }
             }
         }
     }
