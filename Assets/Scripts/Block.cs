@@ -12,7 +12,10 @@ public class Block : MonoBehaviour {
     public int Size;
     public int ValueI;
     public int ValueJ;
+    public bool IsFirstBlock = false;
     public bool IsAdjacent = false;
+    public float Timer = 0;
+    public float TimerMax = 0;
     public List<GameObject> ItemsToSpawn;
     public Transform ItemParent;
 
@@ -41,13 +44,24 @@ public class Block : MonoBehaviour {
 
     public void MovePlayer()
     {
+        Player.instance.JustClicked = true;
         if (IsAdjacent && GameState.currentState != GameState.States.Endstate)
         {
 			
 			previousSteps = Player.instance.Steps;
-			Player.instance.Move(transform.position, this);
-            
-			if (!Discovered && tileDig != null && previousSteps > 0) {
+            if (!Player.instance.Starting)
+            {
+                Player.instance.Move(transform.position, this);
+                Player.instance.DoingFirstMove = false;
+                Player.instance.JustClicked = false;
+            }
+
+            else
+            {
+                IsFirstBlock = true;
+            }
+
+            if (!Discovered && tileDig != null && previousSteps > 0) {
 				tileDig.DigBlock ();
 			}
 
@@ -61,7 +75,7 @@ public class Block : MonoBehaviour {
 
     public void CheckAdjacent()
     {
-        if (Player.instance.Starting && ValueJ == 4 || Mathf.Abs(Player.instance.PlayerTileI - ValueI) == 1 && Mathf.Abs(Player.instance.PlayerTileJ - ValueJ) == 0 || Mathf.Abs(Player.instance.PlayerTileJ - ValueJ) == 1 && Mathf.Abs(Player.instance.PlayerTileI - ValueI) == 0)
+        if (Player.instance.DoingFirstMove && ValueJ == 4 || Mathf.Abs(Player.instance.PlayerTileI - ValueI) == 1 && Mathf.Abs(Player.instance.PlayerTileJ - ValueJ) == 0 || Mathf.Abs(Player.instance.PlayerTileJ - ValueJ) == 1 && Mathf.Abs(Player.instance.PlayerTileI - ValueI) == 0)
         {
             IsAdjacent = true;
         }
@@ -69,6 +83,18 @@ public class Block : MonoBehaviour {
         {
             IsAdjacent = false;
         }
+    }
+
+    public bool Delay(float WaitForSeconds)
+    {
+        TimerMax = WaitForSeconds;
+        Timer += Time.deltaTime;
+        if (Timer > TimerMax)
+        {
+            Timer = 0;
+            return true;
+        }
+        return false;
     }
 
     void Update()
@@ -87,6 +113,15 @@ public class Block : MonoBehaviour {
         {
             Arrow.enabled = false;
             Showel.GetComponent<Image>().enabled = false;
+        }
+
+        if (IsFirstBlock)
+        {
+            if (Delay(1.15f))
+            {
+                IsFirstBlock = false;
+                MovePlayer();
+            }
         }
 
         if (PlayerOnthisBlock())
