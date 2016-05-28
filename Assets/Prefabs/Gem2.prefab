@@ -33,7 +33,7 @@ MonoBehaviour:
   isKey: 0
   TargetPosition: {x: 0, y: 0, z: 0}
   ItemFound: 0
-  NumberOfGems: 1
+  NumberOfGems: 2
 --- !u!114 &11482176
 MonoBehaviour:
   m_ObjectHideFlags: 1
