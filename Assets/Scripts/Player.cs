@@ -23,6 +23,7 @@ public class Player : MonoBehaviour {
     public bool FacingRight = false;
     public bool DoingFirstMove = true;
     public bool JustClicked = false;
+    public bool Lose = false;
 
     void Awake ()
     {
@@ -37,6 +38,7 @@ public class Player : MonoBehaviour {
 	    if (Steps <= 0 && Chest.instance.LocksLeft > 0 && !GameState.ItemIsMoving && !IsMoving)
 	    {
             Board.instance.ShowAllItems();
+            Lose = true;
 	    }
     }
 
