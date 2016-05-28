@@ -10,6 +10,8 @@ public class MoveItem : MonoBehaviour
 
     public Vector3 TargetPosition;
 
+    public bool ItemFound = false;
+
     private bool StartedMoving = false;
 
     // Use this for initialization
@@ -20,7 +22,7 @@ public class MoveItem : MonoBehaviour
 
     void Update()
     {
-        if (!Player.instance.IsMoving && !StartedMoving)
+        if (!Player.instance.IsMoving && !StartedMoving && ItemFound)
         {
             StartedMoving = true;
             StartCoroutine(StartMove());

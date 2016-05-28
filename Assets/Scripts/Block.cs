@@ -79,16 +79,28 @@ public class Block : MonoBehaviour {
             Arrow.enabled = false;
         }
 
-        if (!DiscoveredItem && PlayerOnthisBlock())
+        if (PlayerOnthisBlock())
+        {
+            InstantiateItem(true);
+        }
+    }
+
+    void InstantiateItem(bool ItemFound)
+    {
+        if (!DiscoveredItem && ContainsItem != Item.None)
         {
             DiscoveredItem = true;
-            if (ContainsItem != Item.None)
-            {
-                var item = (GameObject)Instantiate(ItemsToSpawn[(int) ContainsItem - 1], GetComponent<RectTransform>().position + new Vector3((float)Board.Size / 2, (float)Board.Size / 2, 0), transform.rotation);
-				item.transform.SetParent(Front.instance.transform, false);
-				item.transform.position = transform.position;
-            }
+            var item = (GameObject)Instantiate(ItemsToSpawn[(int)ContainsItem - 1]);
+            item.transform.SetParent(Front.instance.transform);
+            item.GetComponent<RectTransform>().position = GetComponent<RectTransform>().position + new Vector3( /*(float)Board.Size / 2*/ 40, /*(float)Board.Size / 2*/40, 0);
+            item.GetComponent<MoveItem>().ItemFound = ItemFound;
         }
+    }
+
+    public void ShowItem()
+    {
+        InstantiateItem(false);
+        GetComponent<Image>().enabled = false;
     }
 
     void RotateArrow()
