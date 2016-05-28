@@ -24,7 +24,7 @@ public class MoveItem : MonoBehaviour
         {
             StartedMoving = true;
             StartCoroutine(StartMove());
-        }
+		}
     }
 
     IEnumerator StartMove()
@@ -32,14 +32,24 @@ public class MoveItem : MonoBehaviour
         float rate = 1f / moveSpeed;
         float currentTime = 0;
 
-        Vector3 startPos = GetComponent<RectTransform>().position;
+//        Vector3 startPos = GetComponent<RectTransform>().position;
+		Vector3 startPos = Player.instance.transform.position;
+
+		Vector3 center = (startPos + TargetPosition) / 2;
+		// Center offset
+		center -= new Vector3(+150, 0 ,0);
+
+		Vector3 startRelCenter = startPos - center;
+		Vector3 targetRelCenter = TargetPosition - center;
 
         while (currentTime < 1)
         {
 
             currentTime += rate * Time.deltaTime;
 
-            GetComponent<RectTransform>().position = Vector3.Lerp(startPos, TargetPosition, currentTime);
+//            GetComponent<RectTransform>().position = Vector3.Lerp(startPos, TargetPosition, currentTime);
+			GetComponent<RectTransform>().position = Vector3.Slerp(startRelCenter, targetRelCenter, currentTime);
+			GetComponent<RectTransform> ().position += center;
             //Debug.Log(currentTime);
             
             yield return null;
