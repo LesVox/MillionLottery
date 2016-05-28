@@ -9,6 +9,10 @@ public class Shovels : MonoBehaviour {
     public int NumberOfShovels = 0;
 
     public Text NumberOfShovelsText;
+	public Image shovelImage;
+
+	[SerializeField]
+	private GameObject[] shovels;
 
     void Awake()
     {
@@ -18,6 +22,8 @@ public class Shovels : MonoBehaviour {
         }
     }
 
+
+
     void Update()
     {
         if (NumberOfShovelsText != null)
@@ -26,4 +32,10 @@ public class Shovels : MonoBehaviour {
             NumberOfShovelsText.text = NumberOfShovels.ToString();
         }
     }
+
+	void CheckNumberOfShovels(){
+		for(int i = 0; i < Player.instance.Steps; i++){
+				
+		}
+	}
 }
