@@ -21,8 +21,9 @@ public class Player : MonoBehaviour {
     public bool IsMoving = false;
     public bool Starting = true;
     public bool FacingRight = false;
-        
-    
+    public bool DoingFirstMove = true;
+    public bool JustClicked = false;
+
     void Awake ()
     {
 	    if (instance == null)
@@ -39,18 +40,6 @@ public class Player : MonoBehaviour {
 	    }
     }
 
-    public bool Delay(float WaitForSeconds)
-    {
-        TimerMax = WaitForSeconds;
-        Timer += Time.deltaTime;
-        if (Timer > TimerMax)
-        {
-            Timer = 0;
-            return true;
-        }
-        return false;
-    }
-
     IEnumerator MovePlayer(Vector3 TargetPosition)
     {
         IsMoving = true;
@@ -59,11 +48,22 @@ public class Player : MonoBehaviour {
 
         Vector3 startPos = transform.position;
 
-        while (currentTime < 1) {
-            
-            currentTime += rate * Time.deltaTime;
+        if (DoingFirstMove)
+        {
+            transform.position = TargetPosition;
+            StopAllCoroutines();
+            IsDigging = false;
+            IsMoving = false;
+            GetComponent<Animator>().SetTrigger("New Trigger");
+        }
 
-            transform.position = Vector3.Lerp(startPos, TargetPosition, currentTime);
+
+        while (currentTime < 1)
+        {
+
+            currentTime += rate * Time.deltaTime;
+            if (!DoingFirstMove)
+                transform.position = Vector3.Lerp(startPos, TargetPosition, currentTime);
 
             yield return null;
         }
@@ -73,6 +73,7 @@ public class Player : MonoBehaviour {
 
     public void Move(Vector3 TargetPosition, Block TargetTile)
     {
+        
         if (!IsMoving)
         {
             if (Steps > 0)
