@@ -33,7 +33,7 @@ public class Player : MonoBehaviour {
 	
 	void Update ()
     {
-	    if (Steps <= 0 && Chest.instance.LocksLeft > 0)
+	    if (Steps <= 0 && Chest.instance.LocksLeft > 0 && !GameState.ItemIsMoving && !IsMoving)
 	    {
             Board.instance.ShowAllItems();
 	    }

@@ -28,6 +28,8 @@ public class MoveItem : MonoBehaviour
         {
             StartedMoving = true;
             transform.SetParent(Front.instance.transform, false);
+            GetComponent<Animator>().Play("BulgeKey");
+            GetComponentInChildren<ParticleSystem>().Play();
             StartCoroutine(StartMove());
 		}
     }
@@ -42,7 +44,7 @@ public class MoveItem : MonoBehaviour
 
 		Vector3 center = (startPos + TargetPosition) / 2;
 		// Center offset
-		center -= new Vector3(+150, 0 ,0);
+		center -= new Vector3(isKey? -1 : +150, 0 ,0);
 
 		Vector3 startRelCenter = startPos - center;
 		Vector3 targetRelCenter = TargetPosition - center;
