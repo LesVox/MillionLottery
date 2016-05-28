@@ -7,6 +7,8 @@ public class GameState {
 
 	public static States currentState = States.Startstate;
 
+    public static bool ItemIsMoving = false;
+
 	public static void ChangeState(States toState){
 		if (currentState == toState)
 			return;

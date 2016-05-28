@@ -40,7 +40,7 @@ public class Block : MonoBehaviour {
 
     public void MovePlayer()
     {
-        if (IsAdjacent)
+        if (IsAdjacent && !GameState.ItemIsMoving)
         {
 			
 			previousSteps = Player.instance.Steps;
@@ -73,7 +73,7 @@ public class Block : MonoBehaviour {
     void Update()
     {
         CheckAdjacent();
-        if (IsAdjacent && !Player.instance.IsMoving && Player.instance.Steps > 0)
+        if (IsAdjacent && !Player.instance.IsMoving && Player.instance.Steps > 0 && !GameState.ItemIsMoving)
         {
             Arrow.enabled = true;
             RotateArrow();
@@ -96,7 +96,8 @@ public class Block : MonoBehaviour {
             DiscoveredItem = true;
             var item = (GameObject)Instantiate(ItemsToSpawn[(int)ContainsItem - 1]);
             item.transform.SetParent(ItemParent, false);
-			item.GetComponent<RectTransform> ().anchoredPosition = Vector2.zero; //GetComponent<RectTransform>().position + new Vector3( /*(float)Board.Size / 2*/ 40, /*(float)Board.Size / 2*/40, 0);
+			item.GetComponent<RectTransform> ().anchoredPosition = Vector2.zero;
+            item.GetComponent<RectTransform>().position = GetComponent<RectTransform>().position;
 			Vector3 startPos = item.transform.position;
 
 			itemObject = item;
@@ -104,6 +105,8 @@ public class Block : MonoBehaviour {
 			Invoke ("DelayedSet", 0.01f);
             item.GetComponent<MoveItem>().ItemFound = ItemFound;
 			item.transform.position = startPos;
+
+            GameState.ItemIsMoving = true;
         }
     }
 
