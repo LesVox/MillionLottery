@@ -154,6 +154,16 @@ public class Block : MonoBehaviour {
             item.GetComponent<MoveItem>().ItemFound = ItemFound;
 			item.transform.position = startPos;
 
+			if (SoundManager.instance != null) {
+				if (ContainsItem == Item.Key) {
+					SoundManager.instance.PlayKeyPickup ();
+				} else {
+					SoundManager.instance.PlayGemPickup ();
+				}
+			} else {
+				Debug.Log ("No soundmanager found");
+			}
+
             GameState.ItemIsMoving = true;
         }
     }
