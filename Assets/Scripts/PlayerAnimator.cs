@@ -16,6 +16,10 @@ public class PlayerAnimator : MonoBehaviour {
         GetComponent<Animator>().SetInteger("Facing", Player.instance.Facing);
         GetComponent<Animator>().SetBool("FacingRight", Player.instance.FacingRight);
         GetComponent<Animator>().SetBool("Starting", Player.instance.Starting);
+        GetComponent<Animator>().SetBool("JustClicked", Player.instance.JustClicked);
+        GetComponent<Animator>().SetBool("DoingFirstMove", Player.instance.DoingFirstMove);
+        GetComponent<Animator>().SetBool("Lose", Player.instance.Lose);
+        GetComponent<Animator>().SetBool("IsDigging", Player.instance.IsDigging);
 
         if (Player.instance.Facing == 4)
         {
