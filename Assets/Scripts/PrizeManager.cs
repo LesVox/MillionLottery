@@ -25,7 +25,7 @@ public class PrizeManager : MonoBehaviour {
 			Winnings = availablePrizes [Random.Range( 0, availablePrizes.Length)];
 
 			if (winningText != null) {
-				winningText.text = Winnings.ToString ();
+				winningText.text = Winnings.ToString () + " Kr";
 				winningText.enabled = true;
 			}
 
