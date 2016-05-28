@@ -36,7 +36,7 @@ public class Board : MonoBehaviour {
                 InstantiatedBlock.GetComponent<Block>().ValueJ = j;
                 Blocks[i].Add(InstantiatedBlock.GetComponent<Block>());
                 InstantiatedBlock.transform.SetParent(transform, false);
-                InstantiatedBlock.GetComponent<Image>().sprite = Sprites[OneDimIndex];
+                InstantiatedBlock.GetComponent<Block>().BlockImage.GetComponent<Image>().sprite = Sprites[OneDimIndex];
                 InstantiatedBlock.GetComponent<Block>().ContainsItem = Items[OneDimIndex];
                 OneDimIndex++;
             }
