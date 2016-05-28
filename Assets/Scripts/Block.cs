@@ -20,7 +20,7 @@ public class Block : MonoBehaviour {
 
     public enum Item
     {
-        None, Key, Gem
+        None, Key, Gem1, Gem2, Gem3
     }
 
     public Item ContainsItem = Item.None;
