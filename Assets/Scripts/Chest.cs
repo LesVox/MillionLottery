@@ -38,7 +38,7 @@ public class Chest : MonoBehaviour {
             GameState.ChangeState(GameState.States.Endstate);
             if (!DoneWaiting)
             {
-                if(Delay(2))
+                if(Delay(1))
                 {
                     DoneWaiting = true;
                     foreach (var item in Locks)
@@ -76,6 +76,7 @@ public class Chest : MonoBehaviour {
 
 
 		while (currentTime < 1f) {
+			anim.SetTrigger ("Bounce");
 			currentTime += rate * Time.deltaTime;
 			transform.position = Vector3.Lerp(startPos, Destination, currentTime);
 			transform.localScale = Vector3.Lerp (startScale, targetScale, currentTime);
@@ -98,8 +99,13 @@ public class Chest : MonoBehaviour {
 	void OpenChest(){
 		if (anim != null) {
 			anim.SetTrigger ("Open");
+			Invoke ("CreateWinnings", 0.5f);
 		}
 			
+	}
+
+	void CreateWinnings(){
+		PrizeManager.instance.GenerateWinnings ();
 	}
 
     public void UnlockLock()
