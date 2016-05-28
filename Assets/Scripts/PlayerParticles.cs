@@ -33,7 +33,7 @@ public class PlayerParticles : MonoBehaviour {
 	}
 
 	void CheckParticles(){
-		if (Player.instance.IsMoving) {
+		if (Player.instance.IsMoving && Player.instance.IsDigging) {
 			switch (Player.instance.Facing) {
 			// Digging North
 			case 3:
