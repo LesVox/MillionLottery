@@ -118,7 +118,7 @@ public class Block : MonoBehaviour {
 
         if (IsFirstBlock)
         {
-            if (Delay(1.15f))
+            if (Delay(1.11f))
             {
                 IsFirstBlock = false;
                 MovePlayer();
