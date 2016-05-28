@@ -26,6 +26,7 @@ public class Block : MonoBehaviour {
     public Item ContainsItem = Item.None;
 
     public Image Arrow;
+    public GameObject Showel;
     private RectTransform ArrowTransform;
 	private TileDigAnimation tileDig;
 	private GameObject itemObject;
@@ -76,11 +77,16 @@ public class Block : MonoBehaviour {
         if (IsAdjacent && !Player.instance.IsMoving && Player.instance.Steps > 0 && !GameState.ItemIsMoving)
         {
             Arrow.enabled = true;
+            if (!Discovered)
+            {
+                Showel.GetComponent<Image>().enabled = true;
+            }
             RotateArrow();
         }
         else
         {
             Arrow.enabled = false;
+            Showel.GetComponent<Image>().enabled = false;
         }
 
         if (PlayerOnthisBlock())
@@ -143,18 +149,22 @@ public class Block : MonoBehaviour {
         if (ValueJ < Player.instance.PlayerTileJ)
         {
             ArrowTransform.rotation = Quaternion.Euler(0,0,0);
+            Showel.GetComponent<RectTransform>().anchoredPosition = new Vector3(0,-30,0);
         }
         else if (ValueJ > Player.instance.PlayerTileJ)
         {
             ArrowTransform.rotation = Quaternion.Euler(0, 0, 180);
+            Showel.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, 30, 0);
         }
         else if (ValueI < Player.instance.PlayerTileI)
         {
             ArrowTransform.rotation = Quaternion.Euler(0, 0, 270);
+            Showel.GetComponent<RectTransform>().anchoredPosition = new Vector3(-30, 0, 0);
         }
         else if (ValueI > Player.instance.PlayerTileI)
         {
             ArrowTransform.rotation = Quaternion.Euler(0, 0, 90);
+            Showel.GetComponent<RectTransform>().anchoredPosition = new Vector3(30, 0, 0);
         }
     }
 
