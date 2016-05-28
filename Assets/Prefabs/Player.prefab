@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04c4275b3207aa64f8af4da677279d90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Steps: 6
+  Steps: 12
   PlayerTileI: 100
   PlayerTileJ: 100
   Facing: 0
