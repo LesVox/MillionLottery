@@ -70,10 +70,15 @@ public class Chest : MonoBehaviour {
 		float currentTime = 0f;
 
 		Vector3 startPos = transform.position;
+		float targetScaleRate = 1.005f;
+		Vector3 targetScale = transform.localScale * targetScaleRate;
+		Vector3 startScale = transform.localScale;
+
 
 		while (currentTime < 1f) {
 			currentTime += rate * Time.deltaTime;
 			transform.position = Vector3.Lerp(startPos, Destination, currentTime);
+			transform.localScale = Vector3.Lerp (startScale, targetScale, currentTime);
 			yield return null;
 		}
 
