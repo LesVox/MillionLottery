@@ -98,6 +98,11 @@ public class Chest : MonoBehaviour {
 
 	void OpenChest(){
 		if (anim != null) {
+			if (SoundManager.instance != null) {
+				SoundManager.instance.PlayChestOpenSound ();
+			} else {
+				Debug.Log ("No soundmanager found");
+			}
 			anim.SetTrigger ("Open");
 			Invoke ("CreateWinnings", 1);
 		}
@@ -106,7 +111,9 @@ public class Chest : MonoBehaviour {
 
 	void CreateWinnings(){
 		PrizeManager.instance.GenerateWinnings ();
-	}
+
+        RestartLevel.SetPressScreenToRestart();
+    }
 
     public void UnlockLock()
     {

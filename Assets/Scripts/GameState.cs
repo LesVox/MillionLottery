@@ -3,7 +3,7 @@ using System.Collections;
 
 public class GameState {
 
-	public enum States {Startstate, Playstate, Endstate, Paused};
+	public enum States {Startstate, Playstate, Endstate, Paused, LoseState};
 
 	public static States currentState = States.Startstate;
 
