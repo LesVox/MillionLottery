@@ -12,6 +12,8 @@ public class MoveItem : MonoBehaviour
 
     public bool ItemFound = false;
 
+    public int NumberOfGems = 1;
+
     private bool StartedMoving = false;
 
     // Use this for initialization
@@ -62,6 +64,11 @@ public class MoveItem : MonoBehaviour
         {
             Chest.instance.UnlockLock();
         }
+        else
+        {
+            Gems.instance.AddGems(NumberOfGems);
+        }
+
 
         Destroy(gameObject);
     }

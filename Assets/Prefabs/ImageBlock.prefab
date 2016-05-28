@@ -255,6 +255,8 @@ MonoBehaviour:
   ItemsToSpawn:
   - {fileID: 147570, guid: 734317264f843214b9cb10e10a080fbc, type: 2}
   - {fileID: 119268, guid: 5ebfd2af013162c409ca9660cfdc64f4, type: 2}
+  - {fileID: 119268, guid: 1fb42bd1af522b74aab3a5291a379297, type: 2}
+  - {fileID: 119268, guid: d6026269023eddc498751c5d93c89eab, type: 2}
   ItemParent: {fileID: 22414134}
   BlockImage: {fileID: 11497798}
   ContainsItem: 0
