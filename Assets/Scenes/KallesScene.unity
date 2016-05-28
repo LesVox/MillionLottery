@@ -170,7 +170,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11450962, guid: 96b4cc2db96396f4e8a26b59723ed467, type: 2}
       propertyPath: Steps
-      value: 8
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 11468022, guid: 96b4cc2db96396f4e8a26b59723ed467, type: 2}
       propertyPath: m_Sprite
@@ -3063,7 +3063,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MoveLeft: 0
-  MoveSpeed: 5
 --- !u!114 &1498575370
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3472,7 +3471,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MoveLeft: 0
-  MoveSpeed: 6
 --- !u!114 &1869417020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3763,7 +3761,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MoveLeft: 1
-  MoveSpeed: 2
 --- !u!114 &2074814197
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -21,7 +21,10 @@ public class Gems : MonoBehaviour {
     public void AddGems(int numberOfGemsToAdd)
     {
         NumberOfGems += numberOfGemsToAdd;
-        NumberOfGemsText.text = NumberOfGems.ToString();
+
+		if (NumberOfGemsText != null) {
+			NumberOfGemsText.text = NumberOfGems.ToString ();
+		}
     }
 
     void Update()
