@@ -17,8 +17,7 @@ public class Player : MonoBehaviour {
     public bool IsMoving = false;
     public bool Starting = true; 
         
-
-    // Use this for initialization
+    
     void Awake ()
     {
 	    if (instance == null)
@@ -27,10 +26,13 @@ public class Player : MonoBehaviour {
         }
 	}
 	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+	void Update ()
+    {
+	    if (Steps <= 0 && Chest.instance.LocksLeft > 0)
+	    {
+            Board.instance.ShowAllItems();
+	    }
+    }
 
     IEnumerator MovePlayer(Vector3 TargetPosition)
     {
