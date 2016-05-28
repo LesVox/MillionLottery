@@ -14,6 +14,7 @@ public class Player : MonoBehaviour {
 
     public float moveSpeed = 2;
 
+    public bool IsDigging = false;
     public bool IsMoving = false;
     public bool Starting = true;
     public bool FacingRight = true;
@@ -51,7 +52,7 @@ public class Player : MonoBehaviour {
 
             yield return null;
         }
-        
+        IsDigging = false;
         IsMoving = false;
     }
 
@@ -63,11 +64,11 @@ public class Player : MonoBehaviour {
             {
                 if (!TargetTile.Discovered)
                 {
+                    IsDigging = true;
                     Steps--;
                     Steps = Mathf.Max(Steps, 0);
                 }
-                StopAllCoroutines();
-                StartCoroutine(MovePlayer(TargetPosition));
+                
                 
 
                 if(PlayerTileI - TargetTile.ValueI == 0 && PlayerTileJ - TargetTile.ValueJ != 0)
@@ -96,6 +97,13 @@ public class Player : MonoBehaviour {
                         Facing = 4;
                     }
                 }
+                else
+                {
+                    Facing = 1;
+                }
+
+                StopAllCoroutines();
+                StartCoroutine(MovePlayer(TargetPosition));
 
                 PlayerTileI = TargetTile.ValueI;
                 PlayerTileJ = TargetTile.ValueJ;
