@@ -14,6 +14,9 @@ public class Block : MonoBehaviour {
     public int ValueJ;
     public bool IsAdjacent = false;
     public List<GameObject> ItemsToSpawn;
+    public Transform ItemParent;
+
+    public Image BlockImage;
 
     public enum Item
     {
@@ -79,14 +82,45 @@ public class Block : MonoBehaviour {
             Arrow.enabled = false;
         }
 
-        if (!DiscoveredItem && PlayerOnthisBlock())
+        if (PlayerOnthisBlock())
+        {
+            InstantiateItem(true);
+        }
+    }
+
+    void InstantiateItem(bool ItemFound)
+    {
+        if (!DiscoveredItem && ContainsItem != Item.None)
         {
             DiscoveredItem = true;
-            if (ContainsItem != Item.None)
-            {
-                var item = (GameObject)Instantiate(ItemsToSpawn[(int) ContainsItem - 1], GetComponent<RectTransform>().position + new Vector3((float)Board.Size / 2, (float)Board.Size / 2, 0), transform.rotation);
-                item.transform.SetParent(Front.instance.transform);
-            }
+            var item = (GameObject)Instantiate(ItemsToSpawn[(int)ContainsItem - 1]);
+            item.transform.SetParent(ItemParent, false);
+            item.GetComponent<RectTransform>().position = GetComponent<RectTransform>().position + new Vector3( /*(float)Board.Size / 2*/ 40, /*(float)Board.Size / 2*/40, 0);
+            item.GetComponent<MoveItem>().ItemFound = ItemFound;
+        }
+    }
+
+    public void ShowItem()
+    {
+        InstantiateItem(false);
+        StartCoroutine(FadeBlock());
+    }
+
+    IEnumerator FadeBlock()
+    {
+
+        var image = BlockImage.GetComponent<Image>();
+        var alpha = image.color.a;
+
+        while (alpha > 0.4f)
+        {
+
+            alpha -= 2f * Time.deltaTime;
+
+            image.color *= new Color(1, 1, 1, 0);
+            image.color +=  new Color(0,0,0,alpha);
+
+            yield return null;
         }
     }
 
