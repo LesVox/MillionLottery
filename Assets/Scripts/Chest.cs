@@ -10,6 +10,7 @@ public class Chest : MonoBehaviour {
 
     public int LocksLeft = 3;
 
+    public float GrowClock = 0;
     public float Timer = 0;
     public float TimerMax = 0;
     public bool DoneWaiting = false;
@@ -48,12 +49,17 @@ public class Chest : MonoBehaviour {
             if (Delay(0.01f))
             {
                 transform.position = Vector3.Lerp(transform.position, Destination, .05f);
-                //transform.localScale *= 1.005f;
+
+                if (GrowClock < 1.7)
+                {
+                    GrowClock += Time.deltaTime;
+                    transform.localScale *= 1.005f;
+                }
+                
             }
                 
-
         }
-        //if(!Delay(1))
+        
     }
 
     public void UnlockLock()
