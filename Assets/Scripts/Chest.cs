@@ -14,7 +14,7 @@ public class Chest : MonoBehaviour {
     public float TimerMax = 0;
     public bool DoneWaiting = false;
 
-    Vector3 Destination = new Vector3(Screen.width / 2, Screen.height / 2, 0);
+    Vector3 Destination = new Vector3();
 
     void Awake()
     {
