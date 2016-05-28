@@ -27,6 +27,7 @@ public class Block : MonoBehaviour {
 
     public Image Arrow;
     public GameObject Showel;
+    public Image Hilight;
     private RectTransform ArrowTransform;
 	private TileDigAnimation tileDig;
 	private GameObject itemObject;
@@ -91,7 +92,13 @@ public class Block : MonoBehaviour {
 
         if (PlayerOnthisBlock())
         {
+            Hilight.enabled = true;
+
             InstantiateItem(true);
+        }
+        else
+        {
+            Hilight.enabled = false;
         }
     }
 
