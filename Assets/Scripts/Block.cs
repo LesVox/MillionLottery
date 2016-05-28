@@ -91,7 +91,7 @@ public class Block : MonoBehaviour {
         {
             DiscoveredItem = true;
             var item = (GameObject)Instantiate(ItemsToSpawn[(int)ContainsItem - 1]);
-            item.transform.SetParent(Front.instance.transform);
+			item.transform.SetParent(Front.instance.transform, false);
             item.GetComponent<RectTransform>().position = GetComponent<RectTransform>().position + new Vector3( /*(float)Board.Size / 2*/ 40, /*(float)Board.Size / 2*/40, 0);
             item.GetComponent<MoveItem>().ItemFound = ItemFound;
         }
