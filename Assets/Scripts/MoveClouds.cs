@@ -6,7 +6,7 @@ public class MoveClouds : MonoBehaviour
 
     public bool MoveLeft = false;
 
-    public int MoveSpeed = 50;
+    private float MoveSpeed = 0.1f;
 
     private RectTransform trans;
 
@@ -21,13 +21,13 @@ public class MoveClouds : MonoBehaviour
 
         pos.x += (MoveLeft ? MoveSpeed : -MoveSpeed) * Time.deltaTime;
 
-        if (pos.x < -60)
+        if (pos.x < -3.7f)
         {
-            pos.x = 400;
+            pos.x = 3.7f;
         }
-        else if (pos.x > 400)
+        else if (pos.x > 3.7f)
         {
-            pos.x = -60;
+            pos.x = -3.7f;
         }
     
         trans.position = pos;
