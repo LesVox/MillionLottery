@@ -6,10 +6,13 @@ public class PrizeManager : MonoBehaviour {
 
 	public static PrizeManager instance;
 
+	public GameObject winScreen;
 	public Text winningText;
 
 	[SerializeField]
 	private int[] availablePrizes;
+	[SerializeField]
+	private GameObject[] prizeImages;
 
 	void Awake(){
 		if (instance == null) {
@@ -19,19 +22,24 @@ public class PrizeManager : MonoBehaviour {
 
 	public void GenerateWinnings(){
 		int Winnings;
+		int winnumber;
 
-		if (availablePrizes.Length > 0) {
+		if (availablePrizes.Length > 0 && prizeImages.Length > 0) {
 
-			Winnings = availablePrizes [Random.Range( 0, availablePrizes.Length)];
+			winnumber = Random.Range (0, availablePrizes.Length);
 
-			if (winningText != null) {
-				winningText.text = Winnings.ToString () + " Kr";
-				winningText.enabled = true;
-			}
+			Winnings = availablePrizes [winnumber];
+			prizeImages [winnumber].SetActive (true);
+
+			// Old wintext
+//			if (winningText != null && winScreen != null) {
+//				winningText.text = Winnings.ToString () + " Kr";
+//				winScreen.SetActive (true);
+//			}
 
 
 		} else {
-			Debug.Log ("No Prizes specified.");
+			Debug.Log ("No Prizes or images specified.");
 		}
 
 	}
