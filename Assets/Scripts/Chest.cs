@@ -53,6 +53,7 @@ public class Chest : MonoBehaviour {
                 
 
         }
+        //if(!Delay(1))
     }
 
     public void UnlockLock()
