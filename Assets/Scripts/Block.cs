@@ -28,6 +28,7 @@ public class Block : MonoBehaviour {
     public Image Arrow;
     private RectTransform ArrowTransform;
 	private TileDigAnimation tileDig;
+	private GameObject itemObject;
 	private int previousSteps;
 
     void Start()
@@ -95,10 +96,20 @@ public class Block : MonoBehaviour {
             DiscoveredItem = true;
             var item = (GameObject)Instantiate(ItemsToSpawn[(int)ContainsItem - 1]);
             item.transform.SetParent(ItemParent, false);
-            item.GetComponent<RectTransform>().position = GetComponent<RectTransform>().position + new Vector3( /*(float)Board.Size / 2*/ 40, /*(float)Board.Size / 2*/40, 0);
+			item.GetComponent<RectTransform> ().anchoredPosition = Vector2.zero; //GetComponent<RectTransform>().position + new Vector3( /*(float)Board.Size / 2*/ 40, /*(float)Board.Size / 2*/40, 0);
+			Vector3 startPos = item.transform.position;
+
+			itemObject = item;
+			itemObject.transform.SetParent(Front.instance.transform, false);
+			Invoke ("DelayedSet", 0.01f);
             item.GetComponent<MoveItem>().ItemFound = ItemFound;
+			item.transform.position = startPos;
         }
     }
+
+	void DelayedSet(){
+		
+	}
 
     public void ShowItem()
     {
