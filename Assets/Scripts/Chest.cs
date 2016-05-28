@@ -99,7 +99,7 @@ public class Chest : MonoBehaviour {
 	void OpenChest(){
 		if (anim != null) {
 			anim.SetTrigger ("Open");
-			Invoke ("CreateWinnings", 0.5f);
+			Invoke ("CreateWinnings", 1);
 		}
 			
 	}
