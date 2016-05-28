@@ -57,6 +57,7 @@ public class Player : MonoBehaviour {
             IsDigging = false;
             IsMoving = false;
             GetComponent<Animator>().SetTrigger("New Trigger");
+            Steps--;
         }
 
 
