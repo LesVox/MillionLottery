@@ -1,35 +1,41 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class PrizeManager : MonoBehaviour {
 
 	public static PrizeManager instance;
 
-	public int startingTreasureAmount;
-	public int startingKeyAmount;
+	public Text winningText;
 
-	private int foundTreasure;
-	private int foundKeys;
+	[SerializeField]
+	private int[] availablePrizes;
 
 	void Awake(){
 		if (instance == null) {
 			instance = this;
 		} 
-
-		ResetNumbers ();
 	}
 
-	void ResetNumbers(){
-		foundTreasure = 0;
-		foundKeys = 0;
+	public void GenerateWinnings(){
+		int Winnings;
+
+		if (availablePrizes.Length > 0) {
+
+			Winnings = availablePrizes [Random.Range( 0, availablePrizes.Length)];
+
+			if (winningText != null) {
+				winningText.text = Winnings.ToString ();
+				winningText.enabled = true;
+			}
+
+
+		} else {
+			Debug.Log ("No Prizes specified.");
+		}
+
 	}
 
-	public int GetFoundTreasures(){
-		return foundTreasure;
-	}
 
-	public int GetFoundKeys(){
-		return foundKeys;
-	}
 		
 }
