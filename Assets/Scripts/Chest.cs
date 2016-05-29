@@ -15,6 +15,7 @@ public class Chest : MonoBehaviour {
     public bool DoneWaiting = false;
 
 	public GameObject chestBehindParticles;
+	public GameObject openChestParticle;
 
     Vector3 Destination = new Vector3();
 	private bool movedToMiddle;
@@ -102,6 +103,9 @@ public class Chest : MonoBehaviour {
 				SoundManager.instance.PlayChestOpenSound ();
 			} else {
 				Debug.Log ("No soundmanager found");
+			}
+			if (openChestParticle != null) {
+				openChestParticle.SetActive (true);
 			}
 			anim.SetTrigger ("Open");
 			Invoke ("CreateWinnings", 1);

@@ -26,6 +26,8 @@ public class SoundManager : MonoBehaviour {
 	[SerializeField]
 	private AudioSource chestOpenSound;
 	[SerializeField]
+	private AudioSource chestCheer;
+	[SerializeField]
 	private AudioSource[] keyPickupSounds;
 
 	int numberOfKeys;
@@ -71,6 +73,7 @@ public class SoundManager : MonoBehaviour {
 
 	public void PlayChestOpenSound(){
 		PlaySound (chestOpenSound);
+		PlaySound (chestCheer);
 	}
 
 	void CheckDigSound(){

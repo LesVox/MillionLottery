@@ -44,7 +44,7 @@ public class Shovels : MonoBehaviour {
 			} else {
 
 				if (shovels [i].activeInHierarchy && shovelDestroyParticle != null) {
-					shovelDestroyParticle.transform.position = shovels [i].transform.position - new Vector3(0.5f,0.5f,0);
+					shovelDestroyParticle.transform.position = shovels [i].transform.position - new Vector3(0.25f,0.25f,0);
 					shovelDestroyParticle.SetActive (false);
 					shovelDestroyParticle.SetActive (true);
 				}

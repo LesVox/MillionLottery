@@ -231,18 +231,34 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 22479354, guid: d0e751756bbac3b4c8108f1b72fc2a55, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 192.1676
+    - target: {fileID: 194604, guid: d0e751756bbac3b4c8108f1b72fc2a55, type: 2}
+      propertyPath: m_Name
+      value: ChestWiggle
       objectReference: {fileID: 0}
-    - target: {fileID: 22479354, guid: d0e751756bbac3b4c8108f1b72fc2a55, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 192.1676
+    - target: {fileID: 8206976, guid: d0e751756bbac3b4c8108f1b72fc2a55, type: 2}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: e6d39aecd2589654c8bae2fbcb26a409, type: 3}
+    - target: {fileID: 165690, guid: d0e751756bbac3b4c8108f1b72fc2a55, type: 2}
+      propertyPath: m_Name
+      value: ChestCheer
       objectReference: {fileID: 0}
-    - target: {fileID: 22479354, guid: d0e751756bbac3b4c8108f1b72fc2a55, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 192.1676
-      objectReference: {fileID: 0}
+    - target: {fileID: 8237666, guid: d0e751756bbac3b4c8108f1b72fc2a55, type: 2}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: a3ad6d9dcf894454e8afb4f761a02902, type: 3}
+    - target: {fileID: 8222686, guid: d0e751756bbac3b4c8108f1b72fc2a55, type: 2}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: e6d39aecd2589654c8bae2fbcb26a409, type: 3}
+    - target: {fileID: 11456146, guid: d0e751756bbac3b4c8108f1b72fc2a55, type: 2}
+      propertyPath: chestWiggleSound
+      value: 
+      objectReference: {fileID: 1011413189}
+    - target: {fileID: 11456146, guid: d0e751756bbac3b4c8108f1b72fc2a55, type: 2}
+      propertyPath: chestCheer
+      value: 
+      objectReference: {fileID: 927131203}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d0e751756bbac3b4c8108f1b72fc2a55, type: 2}
   m_IsPrefabParent: 0
@@ -3070,6 +3086,16 @@ RectTransform:
   m_PrefabParentObject: {fileID: 22464086, guid: dc3a8cb113a3e294dbbb466f0a4e1327,
     type: 2}
   m_PrefabInternal: {fileID: 916333073}
+--- !u!82 &927131203 stripped
+AudioSource:
+  m_PrefabParentObject: {fileID: 8237666, guid: d0e751756bbac3b4c8108f1b72fc2a55,
+    type: 2}
+  m_PrefabInternal: {fileID: 66629127}
+--- !u!82 &1011413189 stripped
+AudioSource:
+  m_PrefabParentObject: {fileID: 8206976, guid: d0e751756bbac3b4c8108f1b72fc2a55,
+    type: 2}
+  m_PrefabInternal: {fileID: 66629127}
 --- !u!1 &1084842451
 GameObject:
   m_ObjectHideFlags: 0
@@ -3534,7 +3560,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11450962, guid: 96b4cc2db96396f4e8a26b59723ed467, type: 2}
       propertyPath: Steps
-      value: 20
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 11468022, guid: 96b4cc2db96396f4e8a26b59723ed467, type: 2}
       propertyPath: m_Sprite
