@@ -38,7 +38,7 @@ public class Player : MonoBehaviour {
 	    if (Steps <= 0 && Chest.instance.LocksLeft > 0 && !GameState.ItemIsMoving && !IsMoving)
 	    {
             Board.instance.ShowAllItems();
-            RestartLevel.SetPressScreenToRestart();
+            RestartLevel.instance.SetPressScreenToRestart();
             Lose = true;
 	    }
     }
