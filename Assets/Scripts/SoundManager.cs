@@ -58,7 +58,9 @@ public class SoundManager : MonoBehaviour {
 		} if (GameState.currentState == GameState.States.LoseState && !playedLoseSound) {
 			SwitchSound (musicLoopSound, loseStateSound);
 			playedLoseSound = true;
-		} 
+		} if (GameState.currentState == GameState.States.Startstate && !musicLoopSound.isPlaying) {
+			PlaySound (musicLoopSound);
+		}
 
 		// BirdChirp
 		if (timeElapsed + birdChirpDelay < Time.time && !birdsChirpSound.isPlaying) {
