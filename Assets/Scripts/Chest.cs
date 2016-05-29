@@ -15,6 +15,7 @@ public class Chest : MonoBehaviour {
     public bool DoneWaiting = false;
 
 	public GameObject chestBehindParticles;
+	public GameObject openChestParticle;
 
     Vector3 Destination = new Vector3();
 	private bool movedToMiddle;
@@ -103,9 +104,13 @@ public class Chest : MonoBehaviour {
 			} else {
 				Debug.Log ("No soundmanager found");
 			}
+			if (openChestParticle != null) {
+				openChestParticle.SetActive (true);
+			}
 			anim.SetTrigger ("Open");
 			Invoke ("CreateWinnings", 1);
-		}
+            Handheld.Vibrate();
+        }
 			
 	}
 
@@ -120,6 +125,8 @@ public class Chest : MonoBehaviour {
         if (Locks.Count == 3 && LocksLeft > 0)
         {
             Locks[Locks.Count - LocksLeft].GetComponent<Animator>().Play("OpenLock");
+            
+            
             LocksLeft--;
         }
     }

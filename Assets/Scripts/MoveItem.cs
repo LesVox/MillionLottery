@@ -20,12 +20,19 @@ public class MoveItem : MonoBehaviour
     void Start ()
     {
         TargetPosition = isKey ? Chest.instance.GetComponent<RectTransform>().position : Gems.instance.GetComponent<RectTransform>().position;
+
+
     }
 
     void Update()
     {
         if (!Player.instance.IsMoving && !StartedMoving && ItemFound)
         {
+            if (isKey)
+            {
+                Handheld.Vibrate();
+            }
+
             StartedMoving = true;
             transform.SetParent(Front.instance.transform, false);
             GetComponent<Animator>().Play("BulgeKey");
