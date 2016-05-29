@@ -38,9 +38,11 @@ public class Player : MonoBehaviour {
 	    if (Steps <= 0 && Chest.instance.LocksLeft > 0 && !GameState.ItemIsMoving && !IsMoving)
 	    {
             Board.instance.ShowAllItems();
+            RestartLevel.SetPressScreenToRestart();
             Lose = true;
 	    }
     }
+    
 
     IEnumerator MovePlayer(Vector3 TargetPosition)
     {
@@ -79,6 +81,7 @@ public class Player : MonoBehaviour {
         
         if (!IsMoving)
         {
+            IsMoving = true;
             if (Steps > 0)
             {
                 if (!TargetTile.Discovered)

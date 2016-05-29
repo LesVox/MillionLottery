@@ -36,6 +36,8 @@ public class Block : MonoBehaviour {
 	private GameObject itemObject;
 	private int previousSteps;
 
+    private static bool dontShowMFArrowsMF = false;
+
     void Start()
     {
         ArrowTransform = Arrow.GetComponent<RectTransform>();
@@ -101,7 +103,7 @@ public class Block : MonoBehaviour {
     void Update()
     {
         CheckAdjacent();
-        if (IsAdjacent && !Player.instance.IsMoving && Player.instance.Steps > 0 && GameState.currentState != GameState.States.Endstate)
+        if (IsAdjacent && !Player.instance.IsMoving && Player.instance.Steps > 0 && GameState.currentState != GameState.States.Endstate && !dontShowMFArrowsMF)
         {
             Arrow.enabled = true;
             if (!Discovered)
@@ -118,10 +120,12 @@ public class Block : MonoBehaviour {
 
         if (IsFirstBlock)
         {
+            dontShowMFArrowsMF = true;
             if (Delay(1.11f))
             {
                 IsFirstBlock = false;
                 MovePlayer();
+                dontShowMFArrowsMF = false;
             }
         }
 
