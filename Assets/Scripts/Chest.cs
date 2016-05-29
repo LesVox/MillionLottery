@@ -105,7 +105,8 @@ public class Chest : MonoBehaviour {
 			}
 			anim.SetTrigger ("Open");
 			Invoke ("CreateWinnings", 1);
-		}
+            Handheld.Vibrate();
+        }
 			
 	}
 
@@ -120,6 +121,8 @@ public class Chest : MonoBehaviour {
         if (Locks.Count == 3 && LocksLeft > 0)
         {
             Locks[Locks.Count - LocksLeft].GetComponent<Animator>().Play("OpenLock");
+            
+            
             LocksLeft--;
         }
     }
