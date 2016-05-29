@@ -117,7 +117,7 @@ public class Chest : MonoBehaviour {
 	void CreateWinnings(){
 		PrizeManager.instance.GenerateWinnings ();
 
-        RestartLevel.SetPressScreenToRestart();
+        RestartLevel.instance.SetPressScreenToRestart();
     }
 
     public void UnlockLock()

@@ -1,11 +1,23 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class RestartLevel : MonoBehaviour
 {
+    public static RestartLevel instance;
+
+    public GameObject Child;
 
     private static bool CanPressScreenToRestart = false;
+
+    void Awake()
+    {
+        if(instance == null)
+        {
+            instance = this;
+        }
+    }
 
 	public void Restart(){
 		//Application.LoadLevel (Application.loadedLevel);
@@ -15,9 +27,17 @@ public class RestartLevel : MonoBehaviour
         SceneManager.LoadScene(0);
 	}
 
-    public static void SetPressScreenToRestart()
+    public void SetPressScreenToRestart()
     {
+        instance.StartCoroutine(ChillUntillBill());
+    }
+
+    IEnumerator ChillUntillBill()
+    {
+        yield return new WaitForSeconds(1.5f);
         CanPressScreenToRestart = true;
+        Child.GetComponent<Image>().enabled = true;
+        yield return null;
     }
 
     void Update()
