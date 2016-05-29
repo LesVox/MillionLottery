@@ -26,6 +26,8 @@ public class SoundManager : MonoBehaviour {
 	[SerializeField]
 	private AudioSource chestOpenSound;
 	[SerializeField]
+	private AudioSource chestCheer;
+	[SerializeField]
 	private AudioSource[] keyPickupSounds;
 
 	int numberOfKeys;
@@ -58,7 +60,9 @@ public class SoundManager : MonoBehaviour {
 		} if (GameState.currentState == GameState.States.LoseState && !playedLoseSound) {
 			SwitchSound (musicLoopSound, loseStateSound);
 			playedLoseSound = true;
-		} 
+		} if (GameState.currentState == GameState.States.Startstate && !musicLoopSound.isPlaying) {
+			PlaySound (musicLoopSound);
+		}
 
 		// BirdChirp
 		if (timeElapsed + birdChirpDelay < Time.time && !birdsChirpSound.isPlaying) {
@@ -69,6 +73,7 @@ public class SoundManager : MonoBehaviour {
 
 	public void PlayChestOpenSound(){
 		PlaySound (chestOpenSound);
+		PlaySound (chestCheer);
 	}
 
 	void CheckDigSound(){
